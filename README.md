@@ -1,5 +1,5 @@
 # KL9H-Root-Template
-A root template for Tecno Spark 30C 5G (KL8H) to make flashable roms.
+A root template for Tecno Spark 30C 5G (KL8H) to make flashable root zip.
 
 ## Details
 Kernel: 5.15.188-DevAyu
