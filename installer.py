@@ -87,7 +87,7 @@ def main():
     # --- Header ---
     clear_screen()
     print("====================================")
-    print("   Apatch/Magisk/KSU Installer   ")
+    print("   Apatch/Magisk/KSU Next Installer   ")
     print("====================================")
     print("Device: Tecno Spark 30C (KL8H)")
     print("Developer: Ayu Kashyap - @dev_ayu")
@@ -105,7 +105,7 @@ def main():
         print("\nSelect boot method:")
         print("[1] Magisk")
         print("[2] Apatch")
-        print("[3] KSU (KernelSU)")
+        print("[3] KSU Next (KernelSU Next)")
         print("[4] Unroot (Stock Boot)")
         choice = input("Enter choice (1/2/3/4): ")
 
