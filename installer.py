@@ -31,7 +31,7 @@ def run_command(command_list):
             if isinstance(item, str) and item.endswith('.img'):
                 if not os.path.exists(item):
                     print(f"\n[ERROR] Image file not found: {item}")
-                    print("Please make sure all necessary .img files are in the 'images' folder.")
+                    print(f"Please make sure all necessary .img files are in the '{IMAGES_FOLDER}' folder.")
                     return False
         
         subprocess.run(command_list, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -86,9 +86,9 @@ def main():
 
     # --- Header ---
     clear_screen()
-    print("=============================")
-    print("   Apatch/Magisk Installer   ")
-    print("=============================")
+    print("====================================")
+    print("   Apatch/Magisk/KSU Installer   ")
+    print("====================================")
     print("Device: Tecno Spark 30C (KL8H)")
     print("Developer: Ayu Kashyap - @dev_ayu")
     print("\n>> Allow the ADB popup on your phone if prompted.")
@@ -105,12 +105,13 @@ def main():
         print("\nSelect boot method:")
         print("[1] Magisk")
         print("[2] Apatch")
-        print("[3] Unroot (Stock Boot)")
-        choice = input("Enter choice (1/2/3): ")
+        print("[3] KSU (KernelSU)")
+        print("[4] Unroot (Stock Boot)")
+        choice = input("Enter choice (1/2/3/4): ")
 
-        if choice in ["1", "2", "3"]:
+        if choice in ["1", "2", "3", "4"]:
             break
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        print("Invalid choice. Please enter 1, 2, 3, or 4.")
 
     # --- Flashing Logic ---
     if choice == "1": # Magisk
@@ -131,7 +132,16 @@ def main():
         run_command(fastboot_cmd + ["flash", "init_boot_a", init_boot_img])
         print(">> Apatch installed successfully.")
 
-    elif choice == "3": # Unroot
+    elif choice == "3": # KSU
+        animated_dots("Installing KSU Next")
+        boot_img = os.path.join(IMAGES_FOLDER, f"boot_{BOOT_VERSION}.img")
+        init_boot_img = os.path.join(IMAGES_FOLDER, "init_boot_a_ksu.img")
+        run_command(fastboot_cmd + ["flash", "boot", boot_img])
+        run_command(fastboot_cmd + ["reboot", "bootloader"])
+        run_command(fastboot_cmd + ["flash", "init_boot_a", init_boot_img])
+        print(">> KSU Next installed successfully.")
+
+    elif choice == "4": # Unroot
         animated_dots("Flashing stock boot (Unroot)")
         boot_img = os.path.join(IMAGES_FOLDER, f"boot_{BOOT_VERSION}.img")
         init_boot_img = os.path.join(IMAGES_FOLDER, "init_boot_a.img")
