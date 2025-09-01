@@ -6,7 +6,7 @@ import shutil
 
 # --- Configuration ---
 # Set the kernel/boot version once here
-BOOT_VERSION = "5.15.188"
+BOOT_VERSION = "5.15.189"
 # Define the folder where your .img files are located
 IMAGES_FOLDER = "images"
 # -------------------
